@@ -1,0 +1,31 @@
+@extends('Master.master')
+
+@section('title', 'Book Category')
+
+@section('content')
+
+<link rel="stylesheet" href="/css/bookCategoryStyle.css">
+
+<div class="alert alert-dark text-center" role="alert">
+    <h3 class="text-dark">{{ $category->name }}</h3>
+</div>
+
+<div class="container">
+    @foreach($bookData as $b)
+    <div class="card border-light bg-light" style="width: 18rem; margin: 10px;">
+        <img src="{{ asset('/storage/book/'.$b->book->image) }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ $b->book->title }}</h5>
+          <p class="card-text"> By: {{ $b->book->author }}</p>
+        </div>
+
+        <a href="../book-detail/{{ $b->book->id }}" class="btn btn-primary">Detail</a>
+    </div>
+    @endforeach
+</div>
+
+<div class="pagination justify-content-center" style="margin-top: 20px; margin-bottom: 20px">
+    {{$bookData->links()}}
+</div>
+
+@endsection
